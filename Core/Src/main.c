@@ -66,6 +66,14 @@ void StartDefaultTask(void *argument);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+int __io_putchar(int ch) {
+	if (ch == '\n')
+		HAL_UART_Transmit(&huart2, (uint8_t*)&"\r", 1, HAL_MAX_DELAY);
+	HAL_UART_Transmit(&huart2, (uint8_t*)&ch, 1, HAL_MAX_DELAY);
+}
+
+
+
 /* USER CODE END 0 */
 
 /**
@@ -272,7 +280,8 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	  printf("Hello World!\n");
+	  osDelay(pdMS_TO_TICKS(1000));
   }
   /* USER CODE END 5 */
 }
